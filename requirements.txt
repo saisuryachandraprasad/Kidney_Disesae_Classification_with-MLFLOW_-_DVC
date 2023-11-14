@@ -1,0 +1,17 @@
+pandas
+numpy
+tensorflow==2.12.0
+dvc
+joblib
+mlflow==2.2.2
+notebook
+pyYAML
+ensure==1.0.2
+python-box==6.0.2
+types-pyYAML
+scipy
+FLASK
+FLASK-Cors
+gdown
+
+-e .
