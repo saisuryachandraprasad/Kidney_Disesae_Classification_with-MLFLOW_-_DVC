@@ -11,7 +11,7 @@ class PrepareBaseModel:
 
 
     def get_base_model(self):
-        self.model = tf.keras.applications.VGG16(
+        self.model = tf.keras.applications.vgg16.VGG16(
             input_shape =self.config.params_IMAGE_SIZE,
             weights=self.config.params_WEIGHTS,
             include_top=self.config.params_INCLUDE_TOP
@@ -23,7 +23,7 @@ class PrepareBaseModel:
         if freeze_all:
             for layer in model.layers:
                 model.trainable = False
-        elif (freeze_till is not None) or (freeze_till > 0):
+        elif (freeze_till is not None) and (freeze_till > 0):
             for layer in model.layers[:-freeze_till]:
                 model.trainable = False
 

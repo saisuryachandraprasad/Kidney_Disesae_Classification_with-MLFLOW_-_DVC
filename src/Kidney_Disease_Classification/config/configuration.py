@@ -1,7 +1,9 @@
+import os
 from src.Kidney_Disease_Classification.constants import *
 from src.Kidney_Disease_Classification.utils.common import read_yaml, create_directory
 from src.Kidney_Disease_Classification.entity.config_entity import (DataIngestionConfig,
-                                                                    PrepareBaseModelConfig)
+                                                                    PrepareBaseModelConfig,
+                                                                    ModelTrainerConfig)
 
 
 class ConfigurationManager:
@@ -36,9 +38,9 @@ class ConfigurationManager:
         create_directory([config.root_dir])
 
         prepare_base_model_config = PrepareBaseModelConfig(
-            root_dir = config.root_dir,
-            base_model_path = config.base_model_path,
-            base_model_updated = config.base_model_updated,
+            root_dir = Path(config.root_dir),
+            base_model_path = Path(config.base_model_path),
+            base_model_updated = Path(config.base_model_updated),
             params_IMAGE_SIZE = self.params.IMAGE_SIZE,
             params_CLASSES = self.params.CLASSES,
             params_WEIGHTS = self.params.WEIGHTS,
@@ -48,3 +50,24 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        training = self.config.training
+        params = self.params
+        prepare_base_model = self.config.prepare_base_model
+        training_data = os.path.join(self.config.data_ingestion.unzip_data_path, "kidney-ct-scan-image")
+
+        create_directory([Path(training.root_dir)])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir = Path(training.root_dir),
+            trained_model_path = Path(training.trained_model_path),
+            base_model_updated = Path(prepare_base_model.base_model_updated),
+            training_data = training_data,
+            params_epochs = params.EPOCHS,
+            params_batch_size = params.BATCH_SIZE,
+            params_image_size = params.IMAGE_SIZE,
+            params_augmentation = params.AUGMENTATION
+        )
+        return model_trainer_config
