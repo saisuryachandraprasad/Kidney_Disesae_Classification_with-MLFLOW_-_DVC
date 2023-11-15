@@ -36,7 +36,7 @@ def create_directory(path_of_directory:list, verbose = True):
     """This method is responsible for creating directories"""
 
     for directory in path_of_directory:
-        os.makedirs(directory)
+        os.makedirs(directory,exist_ok= True)
 
         if verbose:
             logger.info(f"Directory is created for {directory}")

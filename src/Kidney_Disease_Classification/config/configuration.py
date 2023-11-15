@@ -1,6 +1,7 @@
 from src.Kidney_Disease_Classification.constants import *
 from src.Kidney_Disease_Classification.utils.common import read_yaml, create_directory
-from src.Kidney_Disease_Classification.entity.config_entity import DataIngestionConfig
+from src.Kidney_Disease_Classification.entity.config_entity import (DataIngestionConfig,
+                                                                    PrepareBaseModelConfig)
 
 
 class ConfigurationManager:
@@ -26,3 +27,24 @@ class ConfigurationManager:
 
         )
         return data_ingestion_config
+    
+
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+
+        create_directory([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir = config.root_dir,
+            base_model_path = config.base_model_path,
+            base_model_updated = config.base_model_updated,
+            params_IMAGE_SIZE = self.params.IMAGE_SIZE,
+            params_CLASSES = self.params.CLASSES,
+            params_WEIGHTS = self.params.WEIGHTS,
+            params_LEARNING_RATE = self.params.LEARNING_RATE,
+            params_INCLUDE_TOP = self.params.INCLUDE_TOP
+
+        )
+
+        return prepare_base_model_config
