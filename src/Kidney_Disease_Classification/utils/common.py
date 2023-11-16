@@ -5,6 +5,7 @@ from box import ConfigBox
 from ensure import ensure_annotations
 from box.exceptions import BoxValueError
 from src.Kidney_Disease_Classification import logger
+import json
 
 
 
@@ -51,3 +52,16 @@ def get_size(path:Path) -> str:
     size = round(os.path.getsize(path)/1024)
 
     return f"~ {size} kb"
+
+
+@ensure_annotations
+def save_json(path:Path, data:dict):
+    """This method is responsible for saving file in josn format
+    ARGS: path to save the file
+    data: data to store in json format
+    """
+
+    with open(path, "w") as path_obj:
+        json.dump(data, path_obj,indent=4)
+
+        logger.info(f"data is saved in json format")
