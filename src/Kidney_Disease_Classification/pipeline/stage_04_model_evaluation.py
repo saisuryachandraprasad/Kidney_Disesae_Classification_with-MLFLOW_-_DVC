@@ -18,7 +18,7 @@ class ModelEvaluationPipeline:
             evaluation = Evaluation(config = model_evaluation_config)
             evaluation.evaluation()
             evaluation.save_score()
-            evaluation.log_into_mlfow()
+            #evaluation.log_into_mlfow()
 
 
 if __name__ == "__main__":
