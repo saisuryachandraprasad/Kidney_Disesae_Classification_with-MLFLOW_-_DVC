@@ -1,6 +1,7 @@
 import tensorflow as tf
 from pathlib import Path
 from src.Kidney_Disease_Classification.entity.config_entity import ModelTrainerConfig
+from shutil import copyfile
 
 
 
@@ -83,4 +84,8 @@ class ModelTraining:
         self.save_model(
             path = self.config.trained_model_path,
             model = self.model
+        )
+
+        self.copy_to_model_folder(
+            copyfile(src=self.config.trained_model_path, dst="model" )
         )
