@@ -85,7 +85,3 @@ class ModelTraining:
             path = self.config.trained_model_path,
             model = self.model
         )
-
-        self.copy_to_model_folder(
-            copyfile(src=self.config.trained_model_path, dst="model" )
-        )

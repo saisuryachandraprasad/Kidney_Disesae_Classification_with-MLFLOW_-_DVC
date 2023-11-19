@@ -140,6 +140,7 @@ DVC
 
 	
 ## 3. Create ECR repo to store/save docker image
+		save the uri - 570348170743.dkr.ecr.ap-south-1.amazonaws.com/kidney
     
 
 	
