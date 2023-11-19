@@ -25,7 +25,7 @@ https://github.com/saisuryachandraprasad/Kidney_Disesae_Classification_with-MLFL
 ### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-conda create -n cnncls python=3.8 -y
+conda create -n cnncls python=3.9 -y
 ```
 
 ```bash
@@ -147,6 +147,7 @@ DVC
 ## 4. Create EC2 machine (Ubuntu) 
 
 ## 5. Open EC2 and Install docker in EC2 Machine:
+
 	
 	
 	#optinal
