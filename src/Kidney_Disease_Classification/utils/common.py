@@ -6,7 +6,7 @@ from ensure import ensure_annotations
 from box.exceptions import BoxValueError
 from src.Kidney_Disease_Classification import logger
 import json
-
+import base64
 
 
 @ensure_annotations
@@ -65,3 +65,20 @@ def save_json(path:Path, data:dict):
         json.dump(data, path_obj,indent=4)
 
         logger.info(f"data is saved in json format")
+
+def image_encode(img_string, filename):
+    """This method is responsible to encode image
+    img_string: image to encode
+    filename: file where to encode image
+    """
+    imagedata = base64.b64decode(img_string)
+
+    with open(filename, "wb") as file_obj:
+        file_obj.write(imagedata)
+        file_obj.close()
+
+
+def encodeimageintobase64(croppedimagepath):
+    """This method is responsible to encode image"""
+    with open(croppedimagepath,"rb") as file_obj:
+        return base64.b64decode(file_obj.read())
